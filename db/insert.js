@@ -12,14 +12,28 @@ function insert(table, data, callback) {
     const db = client.db(config.db.name);
     db.collection(table).insertMany(data, function (err, result) {
       assert.equal(err, null);
-      callback(result)
-      client.close();
+      db.collection('list_58').updateMany({
+        date: '今天'
+      }, {
+        $currentDate: {
+          date: true
+        }
+      }, function (error, res) {
+        assert.equal(error, null);
+        client.close();
+      });
+      callback(result);
     });
   });
 }
 
 exports.menu = function (data) {
   insert('menu_58', data, function (result) {
+
+  })
+}
+exports.list = function (data) {
+  insert('list_58', data, function (result) {
 
   })
 }

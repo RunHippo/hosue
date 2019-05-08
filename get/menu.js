@@ -28,9 +28,11 @@ function loadHtml(html, callback) {
   const $ = cheerio.load(html);
   const arr = [];
   $('#qySelectFirst a').each(function (item, index) {
-    var obj = {};
+    const obj = {};
+    const href = $(this).attr('href');
     obj.name = $(this).text();
-    obj.href = $(this).attr('href');
+    obj.href = href;
+    obj.keyword = href.match(/^\/(\w*?)\//)[1];
     arr.push(obj);
   })
   callback(arr);

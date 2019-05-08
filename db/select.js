@@ -23,8 +23,8 @@ function select(table, options = {}, callback) {
   });
 }
 
-exports.menu = function () {
+exports.menu = function (callback) {
   select('menu_58', function (docs) {
-    console.log(docs);
+    callback(docs);
   })
 }
